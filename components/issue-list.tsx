@@ -2,52 +2,107 @@
 
 import { useResume } from "./resume-context"
 import { Circle, CheckCircle, Plus } from "lucide-react"
+import { useState } from "react"
+import { ExperienceCard } from "./experience-card"
+import Link from "next/link"
 
 export function IssueList() {
   const { activeView, experiences, education, projects, skills, contact } = useResume()
+  const [expandedId, setExpandedId] = useState<string | null>(null)
 
-  if (activeView === "experience") {
+  if (activeView === "inbox") {
     return (
       <div className="space-y-0">
         <div className="flex items-center justify-between px-4 py-2 text-sm text-[#8A8F98] border-b border-[#27292b]">
           <div className="flex items-center gap-2">
             <Circle size={16} />
-            <span>Work Experience</span>
-            <span className="text-xs bg-[#27292b] px-1.5 py-0.5 rounded">{experiences.length}</span>
+            <span>Inbox</span>
           </div>
-          <button className="text-[#8A8F98] hover:text-white">
+        </div>
+        <div className="px-4 py-8 text-[#8A8F98] text-center text-base">
+          No notifications or updates yet. Your most important info will appear here.
+        </div>
+      </div>
+    )
+  }
+
+  if (activeView === "highlights") {
+    const topAchievements = [
+      "Led the development of a complex SaaS application using React and TypeScript",
+      "Implemented CI/CD pipelines that reduced deployment time by 40%",
+      "Mentored junior developers and conducted code reviews",
+      "Created a pixel-perfect clone of Linear's UI using React and Tailwind CSS",
+      "Built a full-stack e-commerce platform with React and Node.js"
+    ]
+    return (
+      <div className="space-y-0">
+        <div className="flex items-center justify-between px-4 py-2 text-sm text-[#8A8F98] border-b border-[#27292b]">
+          <div className="flex items-center gap-2">
+            <CheckCircle size={16} />
+            <span>Highlights</span>
+          </div>
+        </div>
+        <div className="px-4 py-8 flex flex-col items-center gap-6">
+          <div className="max-w-2xl w-full bg-[#232425] rounded-lg p-6 shadow-sm border border-[#27292b]">
+            <div className="text-lg font-semibold text-white mb-2">Summary</div>
+            <div className="text-[#8A8F98] text-base mb-4">Passionate developer with experience in React, TypeScript, and modern web technologies.</div>
+            <div className="text-lg font-semibold text-white mb-2">Top Achievements</div>
+            <ul className="list-disc pl-5 space-y-2">
+              {topAchievements.map((item, i) => (
+                <li key={i} className="text-[#8A8F98] text-base">{item}</li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </div>
+    )
+  }
+
+  if (activeView === "experience") {
+    return (
+      <div className="space-y-0">
+        <div className="flex items-center justify-between px-4 py-2 text-sm text-[--muted] border-b border-[--border]">
+          <div className="flex items-center gap-2">
+            <Circle size={16} />
+            <span>Work Experience</span>
+            <span className="text-xs bg-[--hover] px-1.5 py-0.5 rounded">{experiences.length}</span>
+          </div>
+          <button className="text-[--muted] hover:text-[--foreground] transition-colors">
             <Plus size={16} />
           </button>
         </div>
 
         {experiences.map((experience, index) => (
-          <div
+          <Link
             key={experience.id}
-            className="flex items-start px-4 py-3 border-b border-[#27292b] hover:bg-[#1e1f21] group"
+            href={`/experience/${experience.id}`}
+            className="flex items-start px-4 py-3 border-b border-[--border] hover:bg-[--hover] group transition-colors no-underline"
           >
             <div className="flex items-center gap-3 w-full">
               <div className="flex-shrink-0 mt-0.5">
-                <Circle size={16} className="text-[#8A8F98]" />
+                <Circle size={16} className="text-[--muted]" />
               </div>
               <div className="flex flex-col min-w-0 flex-1">
                 <div className="flex items-center gap-2">
-                  <div className="text-xs text-[#8A8F98] font-medium">EXP-{index + 1}</div>
-                  <h3 className="font-medium text-sm text-white truncate">{experience.title}</h3>
-                  <span className="text-xs text-[#8A8F98]">@{experience.company}</span>
+                  <div className="text-xs text-[--muted] font-medium">EXP-{index + 1}</div>
+                  <h3 className="font-medium text-sm text-[--foreground] truncate">{experience.title}</h3>
+                  <span className="text-xs text-[--muted]">@{experience.company}</span>
                 </div>
                 <div className="flex items-center justify-between mt-1">
                   <div className="flex items-center gap-2">
                     {experience.labels.map((label, i) => (
-                      <span key={i} className="text-xs px-1.5 py-0.5 rounded bg-[#27292b] text-[#8A8F98]">
+                      <span key={i} className="text-xs px-1.5 py-0.5 rounded bg-[--hover] text-[--muted]">
                         {label}
                       </span>
                     ))}
                   </div>
-                  <div className="text-xs text-[#8A8F98] opacity-0 group-hover:opacity-100">{experience.period}</div>
+                  <div className="text-xs text-[--muted] opacity-0 group-hover:opacity-100 transition-opacity">
+                    {experience.period}
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
+          </Link>
         ))}
       </div>
     )

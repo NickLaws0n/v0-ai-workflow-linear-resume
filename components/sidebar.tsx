@@ -1,131 +1,50 @@
 "use client"
 
-import { useResume } from "./resume-context"
+import Link from "next/link"
+import { usePathname } from "next/navigation"
 import { Inbox, CheckCircle, Plus, Briefcase, GraduationCap, Code, Award, AtSign } from "lucide-react"
 
 export function Sidebar() {
-  const { activeView, setActiveView } = useResume()
-
+  const pathname = usePathname()
   const resumeSections = [
-    { id: "experience", label: "Experience", icon: Briefcase },
-    { id: "education", label: "Education", icon: GraduationCap },
-    { id: "skills", label: "Skills", icon: Code },
-    { id: "projects", label: "Projects", icon: Award },
-    { id: "contact", label: "Contact", icon: AtSign },
-  ] as const
+    { id: "inbox", label: "Inbox", icon: Inbox, href: "/inbox" },
+    { id: "highlights", label: "Highlights", icon: CheckCircle, href: "/highlights" },
+    { id: "experience", label: "Experience", icon: Briefcase, href: "/experience" },
+    { id: "education", label: "Education", icon: GraduationCap, href: "/education" },
+    { id: "projects", label: "Projects", icon: Award, href: "/projects" },
+    { id: "skills", label: "Skills", icon: Code, href: "/skills" },
+    { id: "contact", label: "Contact", icon: AtSign, href: "/contact" },
+  ]
 
   return (
-    <div className="w-56 bg-[#151617] border-r border-[#27292b] flex flex-col h-full">
-      <div className="p-3 flex items-center gap-2">
-        <div className="w-6 h-6 rounded bg-[#F2C94C] flex items-center justify-center text-black font-semibold text-xs">
-          YN
-        </div>
-        <span className="font-medium text-sm">yourname</span>
-        <svg className="w-3 h-3 text-[#8A8F98]" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M6 9l6 6 6-6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-        </svg>
+    <aside className="w-60 bg-[#181A1B] border-r border-[#232425] flex flex-col h-full min-h-screen select-none">
+      <div className="flex items-center gap-2 px-4 py-3 border-b border-[#232425]">
+        <div className="w-7 h-7 rounded bg-[#F2C94C] flex items-center justify-center text-black font-bold text-sm">NL</div>
+        <span className="font-semibold text-base text-white tracking-tight">nicklawson</span>
       </div>
-
-      <div className="mt-4 px-1 space-y-0.5">
-        <button className="flex items-center gap-2 w-full px-2 py-1.5 text-sm text-[#8A8F98] hover:bg-[#27292b] rounded-md">
-          <Inbox size={16} />
-          <span>Overview</span>
-        </button>
-        <button className="flex items-center gap-2 w-full px-2 py-1.5 text-sm text-[#8A8F98] hover:bg-[#27292b] rounded-md">
-          <CheckCircle size={16} />
-          <span>Highlights</span>
-        </button>
-      </div>
-
-      <div className="mt-6 px-3">
-        <div className="flex items-center justify-between mb-1">
-          <h2 className="text-xs font-medium text-[#8A8F98] uppercase">Resume</h2>
-          <button className="text-[#8A8F98] hover:text-white">
-            <svg className="w-3 h-3" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path
-                d="M6 9l6 6 6-6"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
-          </button>
-        </div>
-        <div className="space-y-0.5">
-          {resumeSections.map((section) => {
-            const Icon = section.icon
-            const isActive = activeView === section.id
-
-            return (
-              <button
-                key={section.id}
-                onClick={() => setActiveView(section.id)}
-                className={`flex items-center gap-2 w-full px-2 py-1.5 text-sm ${
-                  isActive ? "text-white bg-[#27292b]" : "text-[#8A8F98] hover:bg-[#27292b]"
-                } rounded-md`}
-              >
-                <Icon size={16} />
-                <span>{section.label}</span>
-              </button>
-            )
-          })}
-        </div>
-      </div>
-
-      <div className="mt-6 px-3">
-        <div className="flex items-center justify-between mb-1">
-          <h2 className="text-xs font-medium text-[#8A8F98] uppercase">Your profile</h2>
-          <button className="text-[#8A8F98] hover:text-white">
-            <svg className="w-3 h-3" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path
-                d="M6 9l6 6 6-6"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
-          </button>
-        </div>
-        <div className="space-y-0.5">
-          <button className="flex items-center gap-2 w-full px-2 py-1.5 text-sm text-white hover:bg-[#27292b] rounded-md">
-            <div className="w-4 h-4 rounded bg-[#5E6AD2] flex items-center justify-center text-white font-semibold text-xs">
-              Y
-            </div>
-            <span>Your Name</span>
-            <svg
-              className="w-3 h-3 text-[#8A8F98] ml-auto"
-              viewBox="0 0 24 24"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
+      <nav className="flex-1 flex flex-col gap-1 mt-4 px-2">
+        {resumeSections.map((section) => {
+          const Icon = section.icon
+          const isActive = pathname.startsWith(section.href)
+          return (
+            <Link
+              key={section.id}
+              href={section.href}
+              className={`flex items-center gap-3 w-full px-3 py-2 rounded-md text-sm transition-colors no-underline ${isActive ? "bg-[#232425] text-white" : "text-[#8A8F98] hover:bg-[#202223] hover:text-white"}`}
+              style={{ fontWeight: isActive ? 600 : 400 }}
             >
-              <path
-                d="M6 9l6 6 6-6"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
-          </button>
-          <button className="flex items-center gap-2 w-full px-2 py-1.5 text-sm text-[#8A8F98] hover:bg-[#27292b] rounded-md ml-6">
-            <Briefcase size={16} />
-            <span>Frontend Developer</span>
-          </button>
-          <button className="flex items-center gap-2 w-full px-2 py-1.5 text-sm text-[#8A8F98] hover:bg-[#27292b] rounded-md ml-6">
-            <AtSign size={16} />
-            <span>your.email@example.com</span>
-          </button>
-        </div>
-      </div>
-
-      <div className="mt-auto p-3">
-        <button className="flex items-center justify-center w-full p-1.5 text-sm text-white bg-[#5E6AD2] hover:bg-[#4F58B8] rounded-md">
-          <Plus size={16} className="mr-1" />
-          <span>Download Resume</span>
+              <Icon size={18} />
+              <span>{section.label}</span>
+            </Link>
+          )
+        })}
+      </nav>
+      <div className="mt-auto px-4 py-3 border-t border-[#232425]">
+        <button className="flex items-center justify-center w-full p-2 text-sm text-white bg-[#5E6AD2] hover:bg-[#4F58B8] rounded-md font-medium transition-colors">
+          <Plus size={16} className="mr-2" />
+          Download Resume
         </button>
       </div>
-    </div>
+    </aside>
   )
 }

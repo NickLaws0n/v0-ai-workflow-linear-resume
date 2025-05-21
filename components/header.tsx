@@ -15,46 +15,26 @@ export function Header() {
   }
 
   return (
-    <header className="border-b border-[#27292b]">
-      <div className="flex items-center justify-between p-2 px-4">
-        <div className="flex items-center">
-          <button className="flex items-center gap-1 px-2 py-1 text-sm rounded-md text-[#8A8F98] hover:bg-[#27292b]">
-            <Filter size={14} />
-            <span>Filter</span>
-          </button>
-        </div>
-
-        <div className="flex items-center gap-2">
-          <div className="relative">
-            <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-[#8A8F98]" />
+    <header className="border-b border-[--border] bg-[--sidebar]">
+      <div className="flex items-center justify-between px-6 py-2 h-14">
+        <div className="flex-1" />
+        <div className="flex items-center gap-4">
+          <div className="relative group">
+            <Search className="absolute left-3 top-2.5 h-4 w-4 text-[--muted] group-focus-within:text-[--foreground] transition-colors" />
             <input
               type="text"
-              placeholder="Search resume..."
-              className="h-9 w-64 rounded-md bg-[#27292b] pl-9 pr-4 text-sm focus:outline-none focus:ring-1 focus:ring-[#5E6AD2]"
+              placeholder="Search..."
+              className="h-9 w-64 rounded-md bg-[--hover] pl-10 pr-4 text-sm text-[--foreground] placeholder-[--muted] 
+                focus:outline-none focus:ring-1 focus:ring-[--primary] border border-transparent 
+                focus:border-[--primary] transition-all"
             />
           </div>
-
-          <button className="p-2 text-[#8A8F98] hover:text-white">
+          <button className="p-2 text-[--muted] hover:text-[--foreground] transition-colors">
             <Bell size={18} />
           </button>
-
-          <div className="h-8 w-8 rounded-full bg-[#F2C94C] flex items-center justify-center text-black font-semibold text-xs">
-            YN
+          <div className="h-8 w-8 rounded-full bg-[#F2C94C] flex items-center justify-center text-black font-bold text-xs">
+            NL
           </div>
-        </div>
-      </div>
-
-      <div className="flex items-center gap-2 px-4 py-2">
-        <button className="px-3 py-1 text-sm rounded-md bg-[#27292b] text-white">All</button>
-
-        <button className="px-3 py-1 text-sm rounded-md hover:bg-[#27292b] text-[#8A8F98]">Recent</button>
-
-        <button className="px-3 py-1 text-sm rounded-md hover:bg-[#27292b] text-[#8A8F98]">Highlights</button>
-
-        <div className="ml-auto flex items-center">
-          <button className="px-3 py-1 text-sm rounded-md hover:bg-[#27292b] text-[#8A8F98] flex items-center">
-            Display
-          </button>
         </div>
       </div>
     </header>
