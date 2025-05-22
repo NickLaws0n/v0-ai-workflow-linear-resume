@@ -32,7 +32,6 @@ export default function EducationPage() {
               </div>
             </div>
             <div className="flex items-center gap-2 ml-2">
-              <span className={`text-xs px-1.5 py-0.5 rounded ${edu.priority === 'high' ? 'bg-red-500' : edu.priority === 'medium' ? 'bg-yellow-500' : 'bg-green-500'}`}>{edu.priority === 'high' ? 'P1' : edu.priority === 'medium' ? 'P2' : 'P3'}</span>
               <button className="text-[#8A8F98] hover:text-white">
                 <MoreHorizontal size={16} />
               </button>

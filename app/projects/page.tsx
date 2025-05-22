@@ -1,7 +1,7 @@
 "use client";
 
 import { useResume } from "@/components/resume-context";
-import { Award } from "lucide-react";
+import { Award, BarChart2, Circle, Hexagon, Check } from "lucide-react";
 
 export default function ProjectsPage() {
   const { projects } = useResume();
@@ -19,40 +19,55 @@ export default function ProjectsPage() {
         <div>Name</div>
         <div>Description</div>
         <div>Labels</div>
-        <div>Status</div>
         <div>Priority</div>
-        <div>Progress</div>
+        <div>Lead</div>
+        <div>Status</div>
       </div>
       {/* Project Rows */}
       {projects.map((project, index) => (
         <div
           key={project.id}
-          className="grid grid-cols-6 gap-4 px-4 py-3 border-b border-[#232425] hover:bg-[#232425] group transition-colors items-center"
+          className="grid grid-cols-6 gap-4 px-4 py-3 border-b border-[#232425] hover:bg-[#232425] group transition-colors items-center min-h-[48px]"
         >
           {/* Name */}
-          <div className="truncate font-medium text-sm text-white">{project.title}</div>
+          <div className="truncate font-medium text-sm text-white">
+            {project.id === "proj-4" ? (
+              <a href="https://agent.ai/profile/Youtube_Quiz_Generator" target="_blank" rel="noopener noreferrer" className="underline hover:text-[#5e6ad2]">{project.title}</a>
+            ) : (
+              project.title
+            )}
+          </div>
           {/* Description */}
-          <div className="truncate text-[#E2E2E2] text-sm">{project.description[0]}</div>
+          <div className="text-[#E2E2E2] text-sm whitespace-pre-line break-words">
+            {project.id === "proj-4"
+              ? project.description.filter(line => !line.startsWith("Try it:")).join("\n\n")
+              : project.description.join("\n\n")}
+          </div>
           {/* Labels */}
           <div className="flex flex-wrap gap-1">
             {project.labels.map((label, i) => (
               <span key={i} className="text-xs px-1.5 py-0.5 rounded bg-[#27292b] text-[#8A8F98]">{label}</span>
             ))}
           </div>
-          {/* Status */}
-          <div>
-            <span className={`px-2 py-1 rounded-full text-xs font-medium ${project.status === 'completed' ? 'bg-green-500/20 text-green-400' : project.status === 'in-progress' ? 'bg-blue-500/20 text-blue-400' : 'bg-yellow-500/20 text-yellow-400'}`}>{project.status.replace('-', ' ')}</span>
+          {/* Priority (custom bar chart icon) */}
+          <div className="flex items-center" style={{ minWidth: 40, minHeight: 40 }}>
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="3" y="13" width="2" height="4" rx="1" fill="#8A8F98" />
+              <rect x="8" y="10" width="2" height="7" rx="1" fill="#8A8F98" />
+              <rect x="13" y="6" width="2" height="11" rx="1" fill="#8A8F98" />
+            </svg>
           </div>
-          {/* Priority */}
-          <div>
-            <span className={`text-xs px-1.5 py-0.5 rounded ${project.priority === 'high' ? 'bg-red-500' : project.priority === 'medium' ? 'bg-yellow-500' : 'bg-green-500'} text-white font-medium`}>{project.priority === 'high' ? 'P1' : project.priority === 'medium' ? 'P2' : 'P3'}</span>
+          {/* Lead (username only) */}
+          <div className="flex items-center">
+            <span className="text-white text-sm">nicklawson85</span>
           </div>
-          {/* Progress (placeholder) */}
+          {/* Status (hexagon with checkmark and percent) */}
           <div className="flex items-center gap-2">
-            <div className="w-20 h-2 bg-[#27292b] rounded-full overflow-hidden">
-              <div className={`h-full rounded-full ${project.status === 'completed' ? 'bg-green-500' : project.status === 'in-progress' ? 'bg-blue-500' : 'bg-yellow-500'}`} style={{ width: project.status === 'completed' ? '100%' : project.status === 'in-progress' ? '50%' : '0%' }}></div>
-            </div>
-            <span className="text-xs text-[#8A8F98]">{project.status === 'completed' ? '100%' : project.status === 'in-progress' ? '50%' : '0%'}</span>
+            <span className="relative flex items-center justify-center w-6 h-6">
+              <Hexagon size={20} className="text-[#4F5DFF] fill-[#4F5DFF]" />
+              <Check size={14} className="absolute text-black" />
+            </span>
+            <span className="text-sm text-white font-medium">{project.status === 'completed' ? '100%' : project.status === 'in-progress' ? '0%' : '0%'}</span>
           </div>
         </div>
       ))}

@@ -17,12 +17,12 @@ export function Sidebar() {
   ]
 
   return (
-    <aside className="w-60 bg-[#181A1B] border-r border-[#232425] flex flex-col h-full min-h-screen select-none">
-      <div className="flex items-center gap-2 px-4 py-3 border-b border-[#232425]">
-        <div className="w-7 h-7 rounded bg-[#F2C94C] flex items-center justify-center text-black font-bold text-sm">NL</div>
-        <span className="font-semibold text-base text-white tracking-tight">nicklawson</span>
+    <aside className="w-60 bg-[#131415] border-r border-[#232425] flex flex-col h-full min-h-screen select-none">
+      <div className="flex items-center gap-3 px-6 py-4">
+        <div className="h-8 w-8 rounded-full bg-[#F2C94C] flex items-center justify-center text-black font-bold text-base">NL</div>
+        <span className="font-semibold text-white text-lg tracking-tight">nicklawson</span>
       </div>
-      <nav className="flex-1 flex flex-col gap-1 mt-4 px-2">
+      <nav className="flex-1 flex flex-col gap-1 px-2 mt-2">
         {resumeSections.map((section) => {
           const Icon = section.icon
           const isActive = pathname.startsWith(section.href)
@@ -30,7 +30,7 @@ export function Sidebar() {
             <Link
               key={section.id}
               href={section.href}
-              className={`flex items-center gap-3 w-full px-3 py-2 rounded-md text-sm transition-colors no-underline ${isActive ? "bg-[#232425] text-white" : "text-[#8A8F98] hover:bg-[#202223] hover:text-white"}`}
+              className={`flex items-center gap-3 w-full px-3 py-2 rounded-md text-sm transition-colors no-underline bg-transparent hover:bg-[#202223] text-white`}
               style={{ fontWeight: isActive ? 600 : 400 }}
             >
               <Icon size={18} />

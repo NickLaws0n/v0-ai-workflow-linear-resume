@@ -281,6 +281,18 @@ const resumeData: Omit<ResumeData, "setActiveView"> = {
       priority: "medium",
       labels: ["GTM", "Product Adoption", "Strategy"],
     },
+    {
+      id: "proj-4",
+      title: "YouTube Quiz Generator Agent",
+      description: [
+        "Built an agent that instantly transforms any YouTube video into an interactive, auto-graded quiz with up to 25 multiple-choice questions.",
+        "Enables educators and learners to reinforce knowledge and boost retention through active engagement with video content.",
+        "Try it: https://agent.ai/profile/Youtube_Quiz_Generator"
+      ],
+      status: "completed",
+      priority: "high",
+      labels: ["AI", "Quiz", "YouTube", "Education", "Agent", "Interactive"],
+    },
   ],
   skills: [
     { id: "skill-1", name: "Customer Success", category: "Professional", level: 5 },

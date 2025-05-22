@@ -28,6 +28,14 @@ export default function ExperienceDetailPage() {
     { label: experience.title, href: `/experience/${experience.id}` },
   ]
 
+  const currentIndex = experiences.findIndex(exp => exp.id === params.id);
+  const total = experiences.length;
+  function goTo(index: number) {
+    if (index >= 0 && index < total) {
+      router.push(`/experience/${experiences[index].id}`);
+    }
+  }
+
   return (
     <div className="flex min-h-screen bg-[#181A1B] text-white">
       {/* Centered main content and right sidebar */}
@@ -47,16 +55,11 @@ export default function ExperienceDetailPage() {
             {/* Title and actions */}
             <div className="flex items-center justify-between mb-2">
               <h1 className="text-2xl font-bold text-white">{experience.title}</h1>
-              <div className="flex gap-2">
-                {/* Placeholder for action icons */}
-                <button className="p-2 rounded hover:bg-[#232425] transition-colors" title="Edit"><svg width="16" height="16" fill="none" stroke="currentColor"><path d="M12.1 3.9l-9.2 9.2c-.2.2-.3.4-.4.7l-1 3c-.1.3.2.6.5.5l3-1c.3-.1.5-.2.7-.4l9.2-9.2c.4-.4.4-1 0-1.4l-2.1-2.1c-.4-.4-1-.4-1.4 0z"/></svg></button>
-                <button className="p-2 rounded hover:bg-[#232425] transition-colors" title="Attach"><svg width="16" height="16" fill="none" stroke="currentColor"><path d="M7.5 13.5a4 4 0 0 1-5.7-5.7l7.8-7.8a4 4 0 1 1 5.7 5.7l-7.8 7.8a2 2 0 1 1-2.8-2.8l7.8-7.8"/></svg></button>
-              </div>
             </div>
             <div className="text-[#8A8F98] text-sm mb-6">@{experience.company} &middot; {experience.period}</div>
             {/* Description */}
             <div className="bg-[#232425] rounded-lg p-6 border border-[#27292b] mb-8">
-              <ul className="list-disc pl-5 space-y-2">
+              <ul className="list-disc pl-5 space-y-4">
                 {experience.description.map((item, i) => (
                   <li key={i} className="text-[#E2E2E2] text-base">{item}</li>
                 ))}
@@ -70,10 +73,6 @@ export default function ExperienceDetailPage() {
             {/* Activity feed placeholder */}
             <div className="mt-8">
               <div className="text-lg font-semibold mb-2">Activity</div>
-              <div className="flex items-center gap-2 text-sm text-[#8A8F98] mb-4">
-                <div className="w-6 h-6 rounded-full bg-[#F2C94C] flex items-center justify-center text-black font-bold text-xs">NL</div>
-                <span>nicklawson85 created this experience · just now</span>
-              </div>
               <input
                 className="w-full bg-[#232425] border border-[#27292b] rounded px-4 py-2 text-sm text-white placeholder-[#8A8F98] focus:outline-none focus:ring-2 focus:ring-[#5e6ad2]"
                 placeholder="Leave a comment... (coming soon)"

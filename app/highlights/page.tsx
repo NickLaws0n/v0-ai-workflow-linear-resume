@@ -28,9 +28,11 @@ export default function HighlightsPage() {
 
   return (
     <div className="flex min-h-screen bg-[#181A1B] text-white">
-      <div className="flex w-full">
-        {/* Main content */}
-        <div className="flex-1 py-10">
+      {/* Main content with divider */}
+      <div className="flex-1 flex flex-col">
+        {/* Top border divider */}
+        <div className="w-full border-b border-[#232425]"></div>
+        <div className="py-10">
           <div className="max-w-2xl w-full mx-auto">
             {/* Breadcrumbs */}
             <nav className="text-xs text-[#8A8F98] mb-6 flex items-center gap-2">
@@ -82,40 +84,39 @@ export default function HighlightsPage() {
             </div>
           </div>
         </div>
-        {/* Right sidebar */}
-        <aside className="w-64 border-l border-[#232425] bg-[#181A1B] px-4 py-6 flex flex-col gap-6">
-          <div>
-            <div className="text-xs text-[#8A8F98] mb-1">Status</div>
-            <div className="text-sm font-medium capitalize mb-2">
-              <span className="px-2 py-1 rounded-full bg-green-500/20 text-green-400">Ready</span>
-            </div>
-          </div>
-          <div>
-            <div className="text-xs text-[#8A8F98] mb-1">Priority</div>
-            <div className="text-sm font-medium capitalize mb-2">
-              <span className="px-2 py-1 rounded-full bg-red-500/20 text-red-400">High</span>
-            </div>
-          </div>
-          <div>
-            <div className="text-xs text-[#8A8F98] mb-1">Labels</div>
-            <div className="flex flex-wrap gap-2">
-              {labels.map((label, i) => (
-                <span key={i} className="text-xs px-2 py-1 rounded-full bg-[#232425] text-[#8A8F98]">{label}</span>
-              ))}
-            </div>
-          </div>
-          <div>
-            <div className="text-xs text-[#8A8F98] mb-1">Role</div>
-            <div className="text-sm font-medium">@Web (Linear)</div>
-          </div>
-          <div>
-            <div className="text-xs text-[#8A8F98] mb-1">Source</div>
-            <div className="text-sm font-medium">
-              <a href="https://linear.app/careers/370d9605-f02f-44f9-97fa-ebf769bed93d?ashby_jid=370d9605-f02f-44f9-97fa-ebf769bed93d" target="_blank" rel="noopener noreferrer" className="text-[#5e6ad2] underline">View @Web Role</a>
-            </div>
-          </div>
-        </aside>
       </div>
+      {/* Right sidebar, flush to top and bottom, full height */}
+      <aside className="w-64 h-screen border-l border-[#232425] bg-[#181A1B] px-4 flex flex-col gap-6">
+        <div>
+          <div className="text-xs text-[#8A8F98] mb-1">Status</div>
+          <div className="text-sm font-medium capitalize mb-2">
+            <span className="px-2 py-1 rounded-full bg-green-500/20 text-green-400">Ready</span>
+          </div>
+        </div>
+        <div>
+          <div className="text-xs text-[#8A8F98] mb-1">Priority</div>
+          <div className="text-sm font-medium capitalize mb-2">
+            <span className="px-2 py-1 rounded-full bg-[#27292b] text-[#8A8F98]">P1</span>
+          </div>
+        </div>
+        <div>
+          <div className="text-xs text-[#8A8F98] mb-1">Labels</div>
+          <div className="flex flex-wrap gap-2">
+            <span className="text-xs px-2 py-1 rounded-full bg-[#27292b] text-[#8A8F98]">React</span>
+            <span className="text-xs px-2 py-1 rounded-full bg-[#27292b] text-[#8A8F98]">Next.js</span>
+          </div>
+        </div>
+        <div>
+          <div className="text-xs text-[#8A8F98] mb-1">Role</div>
+          <div className="text-sm font-medium">@Web (Linear)</div>
+        </div>
+        <div>
+          <div className="text-xs text-[#8A8F98] mb-1">Source</div>
+          <div className="text-sm font-medium">
+            <a href="https://linear.app/careers/370d9605-f02f-44f9-97fa-ebf769bed93d?ashby_jid=370d9605-f02f-44f9-97fa-ebf769bed93d" target="_blank" rel="noopener noreferrer" className="text-[#5e6ad2] underline">View @Web Role</a>
+          </div>
+        </div>
+      </aside>
     </div>
   )
 } 

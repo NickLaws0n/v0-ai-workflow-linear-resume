@@ -2,7 +2,6 @@ import type { Metadata } from 'next'
 import './globals.css'
 import { ResumeProvider } from '@/components/resume-context'
 import { Sidebar } from '@/components/sidebar'
-import { Header } from '@/components/header'
 
 export const metadata: Metadata = {
   title: 'v0 App',
@@ -22,7 +21,6 @@ export default function RootLayout({
           <div className="flex h-screen bg-[#111213] text-white overflow-hidden">
             <Sidebar />
             <div className="flex flex-col flex-1 overflow-hidden bg-[#181A1B]">
-              <Header />
               <main className="flex-1 overflow-auto px-0 py-6 md:px-8 md:py-10">
                 {children}
               </main>
