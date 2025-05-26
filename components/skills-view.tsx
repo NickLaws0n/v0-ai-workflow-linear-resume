@@ -33,7 +33,7 @@ export function SkillsView() {
                 </div>
                 <div className="h-1.5 bg-[#27292b] rounded-full overflow-hidden">
                   <div
-                    className="h-full bg-[#5E6AD2] rounded-full"
+                    className="h-full bg-[#F2C94C] rounded-full"
                     style={{ width: `${(skill.level / 5) * 100}%` }}
                   ></div>
                 </div>

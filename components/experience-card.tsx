@@ -6,7 +6,7 @@ import { ArrowUpRight, MoreHorizontal } from "lucide-react"
 export function ExperienceCard({ experience }: { experience: Experience }) {
   const statusColors = {
     completed: "bg-green-500",
-    "in-progress": "bg-blue-500",
+    "in-progress": "bg-[#5E6AD2]",
     planned: "bg-yellow-500",
   }
 

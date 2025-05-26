@@ -1,0 +1,1 @@
+export const ROLE_TITLE = "Customer Success Manager"; 

@@ -32,7 +32,7 @@ export default function ProjectsPage() {
           {/* Name */}
           <div className="truncate font-medium text-sm text-white">
             {project.id === "proj-4" ? (
-              <a href="https://agent.ai/profile/Youtube_Quiz_Generator" target="_blank" rel="noopener noreferrer" className="underline hover:text-[#5e6ad2]">{project.title}</a>
+              <a href="https://agent.ai/profile/Youtube_Quiz_Generator" target="_blank" rel="noopener noreferrer" className="underline hover:text-[#5E6AD2]">{project.title}</a>
             ) : (
               project.title
             )}

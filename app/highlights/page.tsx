@@ -1,12 +1,13 @@
 "use client"
 
 import Link from 'next/link'
+import { ROLE_TITLE } from '@/lib/role'
 
 export default function HighlightsPage() {
   // Breadcrumbs
   const breadcrumbs = [
     { label: 'Highlights', href: '/#highlights' },
-    { label: '@Web (Linear)', href: '/highlights' },
+    { label: ROLE_TITLE, href: '/highlights' },
   ]
 
   const summary =
@@ -23,17 +24,17 @@ export default function HighlightsPage() {
   ]
 
   const labels = [
-    'Highlights', 'Linear', '@Web', 'SaaS', 'AI', 'Product Enablement', 'Customer Success'
+    'Highlights', 'Linear', ROLE_TITLE, 'SaaS', 'AI', 'Product Enablement', 'Customer Success'
   ]
 
   return (
     <div className="flex min-h-screen bg-[#181A1B] text-white">
-      {/* Main content with divider */}
-      <div className="flex-1 flex flex-col">
-        {/* Top border divider */}
-        <div className="w-full border-b border-[#232425]"></div>
-        <div className="py-10">
-          <div className="max-w-2xl w-full mx-auto">
+      {/* Main content area */}
+      <div className="flex-1 flex flex-col h-screen pr-64">
+        {/* Top border divider only for main content */}
+        <div className="border-b border-[#232425] w-full" />
+        <div className="flex-1 overflow-auto">
+          <div className="max-w-2xl w-full mx-auto py-10">
             {/* Breadcrumbs */}
             <nav className="text-xs text-[#8A8F98] mb-6 flex items-center gap-2">
               {breadcrumbs.map((bc, i) => (
@@ -45,14 +46,8 @@ export default function HighlightsPage() {
             </nav>
             {/* Title and actions */}
             <div className="flex items-center justify-between mb-2">
-              <h1 className="text-2xl font-bold text-white">Nick's Work Highlights for @Web at Linear</h1>
-              <div className="flex gap-2">
-                {/* Placeholder for action icons */}
-                <button className="p-2 rounded hover:bg-[#232425] transition-colors" title="Edit"><svg width="16" height="16" fill="none" stroke="currentColor"><path d="M12.1 3.9l-9.2 9.2c-.2.2-.3.4-.4.7l-1 3c-.1.3.2.6.5.5l3-1c.3-.1.5-.2.7-.4l9.2-9.2c.4-.4.4-1 0-1.4l-2.1-2.1c-.4-.4-1-.4-1.4 0z"/></svg></button>
-                <button className="p-2 rounded hover:bg-[#232425] transition-colors" title="Attach"><svg width="16" height="16" fill="none" stroke="currentColor"><path d="M7.5 13.5a4 4 0 0 1-5.7-5.7l7.8-7.8a4 4 0 1 1 5.7 5.7l-7.8 7.8a2 2 0 1 1-2.8-2.8l7.8-7.8"/></svg></button>
-              </div>
+              <h1 className="text-2xl font-bold text-white">Nick's Work Highlights for {ROLE_TITLE} @ Linear</h1>
             </div>
-            <div className="text-[#8A8F98] text-sm mb-6">Tailored for the @Web role at Linear</div>
             {/* Summary and Achievements */}
             <div className="bg-[#232425] rounded-lg p-8 border border-[#27292b] mb-8">
               <div className="text-lg font-semibold text-white mb-2">Summary</div>
@@ -63,18 +58,14 @@ export default function HighlightsPage() {
                   <li key={i} className="text-[#E2E2E2] text-base">{item}</li>
                 ))}
               </ul>
-              <div className="mt-4 flex flex-wrap gap-2">
-                {labels.map((label, i) => (
-                  <span key={i} className="text-xs px-2 py-1 rounded-full bg-[#27292b] text-[#8A8F98]">{label}</span>
-                ))}
-              </div>
             </div>
             {/* Activity feed placeholder */}
             <div className="mt-8">
               <div className="text-lg font-semibold mb-2">Activity</div>
               <div className="flex items-center gap-2 text-sm text-[#8A8F98] mb-4">
-                <div className="w-6 h-6 rounded-full bg-[#F2C94C] flex items-center justify-center text-black font-bold text-xs">NL</div>
-                <span>nicklawson85 created this highlight · just now</span>
+                <div className="w-6 h-6 rounded-sm bg-[#B08B36] flex items-center justify-center text-white font-bold text-xs">Nl</div>
+                <span className="text-white font-medium">nicklawson</span>
+                <span className="text-[#8A8F98]">created this highlight · just now</span>
               </div>
               <input
                 className="w-full bg-[#232425] border border-[#27292b] rounded px-4 py-2 text-sm text-white placeholder-[#8A8F98] focus:outline-none focus:ring-2 focus:ring-[#5e6ad2]"
@@ -85,35 +76,76 @@ export default function HighlightsPage() {
           </div>
         </div>
       </div>
-      {/* Right sidebar, flush to top and bottom, full height */}
-      <aside className="w-64 h-screen border-l border-[#232425] bg-[#181A1B] px-4 flex flex-col gap-6">
-        <div>
-          <div className="text-xs text-[#8A8F98] mb-1">Status</div>
-          <div className="text-sm font-medium capitalize mb-2">
-            <span className="px-2 py-1 rounded-full bg-green-500/20 text-green-400">Ready</span>
+      {/* Right sidebar, force full height */}
+      <aside className="fixed top-0 right-0 h-full w-64 border-l border-[#232425] bg-[#181A1B] px-4 flex flex-col gap-6 z-20">
+        <div className="mt-10 flex flex-col gap-3">
+          <div className="flex items-center gap-2">
+            <span className="text-xs text-[#8A8F98] w-16">Status</span>
+            <span className="flex items-center gap-2">
+              <svg width="18" height="18" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="10" cy="10" r="10" fill="#5E6AD2" />
+                <path d="M6 10.5l2.5 2.5 5-5" stroke="#fff" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+              <span className="text-sm text-white">Ready</span>
+            </span>
           </div>
-        </div>
-        <div>
-          <div className="text-xs text-[#8A8F98] mb-1">Priority</div>
-          <div className="text-sm font-medium capitalize mb-2">
-            <span className="px-2 py-1 rounded-full bg-[#27292b] text-[#8A8F98]">P1</span>
+          <div className="flex items-center gap-2">
+            <span className="text-xs text-[#8A8F98] w-16">Priority</span>
+            <span className="flex items-center gap-2">
+              <svg width="18" height="18" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="3" y="13" width="2" height="4" rx="1" fill="#8A8F98" />
+                <rect x="8" y="10" width="2" height="7" rx="1" fill="#8A8F98" />
+                <rect x="13" y="6" width="2" height="11" rx="1" fill="#8A8F98" />
+              </svg>
+              <span className="text-sm text-white">High</span>
+            </span>
+          </div>
+          <div className="flex items-center gap-2">
+            <span className="text-xs text-[#8A8F98] w-16">Target date</span>
+            <span className="flex items-center gap-2">
+              <svg width="18" height="18" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="3" y="5" width="14" height="10" rx="2" fill="#8A8F98" />
+                <rect x="6" y="2" width="2" height="3" rx="1" fill="#8A8F98" />
+                <rect x="12" y="2" width="2" height="3" rx="1" fill="#8A8F98" />
+              </svg>
+              <span className="text-sm text-white">Jun 30</span>
+            </span>
           </div>
         </div>
         <div>
           <div className="text-xs text-[#8A8F98] mb-1">Labels</div>
-          <div className="flex flex-wrap gap-2">
-            <span className="text-xs px-2 py-1 rounded-full bg-[#27292b] text-[#8A8F98]">React</span>
-            <span className="text-xs px-2 py-1 rounded-full bg-[#27292b] text-[#8A8F98]">Next.js</span>
+          <div className="flex items-center gap-2 flex-wrap">
+            {labels.map((label, i) => {
+              // Make 'SaaS', 'AI', and 'Product Enablement' dots yellow, others cycle as before
+              const yellowLabels = ['SaaS', 'AI', 'Product Enablement'];
+              const dotColors = [
+                'bg-yellow-400',
+                'bg-[#5E6AD2]',
+                'bg-green-400',
+                'bg-purple-400',
+                'bg-pink-400',
+                'bg-orange-400',
+                'bg-teal-400',
+              ];
+              const dot = yellowLabels.includes(label) ? 'bg-yellow-400' : dotColors[i % dotColors.length];
+              return (
+                <span key={i} className="flex items-center px-3 py-1 rounded-full border border-[#232425] bg-[#181A1B] text-white text-sm font-medium mb-1">
+                  <span className={`w-2 h-2 ${dot} rounded-full mr-2`}></span>
+                  {label}
+                </span>
+              );
+            })}
+            <button className="text-[#8A8F98] hover:text-white text-lg leading-none px-1">+</button>
           </div>
         </div>
         <div>
           <div className="text-xs text-[#8A8F98] mb-1">Role</div>
-          <div className="text-sm font-medium">@Web (Linear)</div>
+          <div className="text-sm font-medium">{ROLE_TITLE}</div>
         </div>
         <div>
           <div className="text-xs text-[#8A8F98] mb-1">Source</div>
           <div className="text-sm font-medium">
-            <a href="https://linear.app/careers/370d9605-f02f-44f9-97fa-ebf769bed93d?ashby_jid=370d9605-f02f-44f9-97fa-ebf769bed93d" target="_blank" rel="noopener noreferrer" className="text-[#5e6ad2] underline">View @Web Role</a>
+            <a href="https://linear.app/careers/370d9605-f02f-44f9-97fa-ebf769bed93d?ashby_jid=370d9605-f02f-44f9-97fa-ebf769bed93d" target="_blank" rel="noopener noreferrer" className="text-[#5E6AD2] underline">View {ROLE_TITLE} Role</a>
           </div>
         </div>
       </aside>

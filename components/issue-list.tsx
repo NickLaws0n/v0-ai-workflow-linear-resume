@@ -12,16 +12,13 @@ export function IssueList() {
 
   if (activeView === "inbox") {
     return (
-      <div className="space-y-0">
-        <div className="flex items-center justify-between px-4 py-2 text-sm text-[#8A8F98] border-b border-[#27292b]">
-          <div className="flex items-center gap-2">
-            <Circle size={16} />
-            <span>Inbox</span>
-          </div>
-        </div>
-        <div className="px-4 py-8 text-[#8A8F98] text-center text-base">
-          No notifications or updates yet. Your most important info will appear here.
-        </div>
+      <div className="flex flex-col items-center justify-center h-[60vh] w-full">
+        <svg width="96" height="72" viewBox="0 0 96 72" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="12" y="16" width="72" height="40" rx="8" stroke="#B3B3B3" strokeWidth="2.5" fill="none" />
+          <rect x="20" y="24" width="56" height="24" rx="6" stroke="#B3B3B3" strokeWidth="1.5" fill="none" />
+          <path d="M28 48h40" stroke="#B3B3B3" strokeWidth="1.5" strokeLinecap="round" />
+        </svg>
+        <div className="mt-4 text-[#8A8F98] text-base">No notifications.....yet ;)</div>
       </div>
     )
   }
