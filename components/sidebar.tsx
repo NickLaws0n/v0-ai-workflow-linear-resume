@@ -46,6 +46,13 @@ export function Sidebar() {
         </div>
       </div>
       <nav className="flex-1 flex flex-col gap-1 px-2 mt-2">
+        {/* Inbox and My Issues */}
+        <div className="flex flex-col mb-2">
+          <Link href="/inbox" className={`flex items-center gap-3 px-3 py-2 rounded-md text-sm transition-colors no-underline bg-transparent hover:bg-[#202223] ${pathname.startsWith('/inbox') ? 'font-semibold' : 'font-normal'}`} style={{ color: '#F9F9FB' }}>
+            <Inbox size={18} color="#8A8F98" />
+            <span>Inbox</span>
+          </Link>
+        </div>
         {/* Workspace group */}
         <div>
           <button
@@ -56,7 +63,7 @@ export function Sidebar() {
             Workspace <span className="ml-0.5 align-middle" style={{ fontSize: '1em' }}>{openWorkspace ? '▾' : '▸'}</span>
           </button>
           {openWorkspace && (
-            <div className="flex flex-col ml-4">
+            <div className="flex flex-col">
               <Link href="/highlights" className={`flex items-center gap-3 px-3 py-2 rounded-md text-sm transition-colors no-underline bg-transparent hover:bg-[#202223] ${pathname.startsWith('/highlights') ? 'font-semibold' : 'font-normal'}`} style={{ color: '#F9F9FB' }}>
                 <CheckCircle size={18} color="#8A8F98" />
                 <span>Highlights</span>
@@ -78,7 +85,7 @@ export function Sidebar() {
             Learning <span className="ml-0.5 align-middle" style={{ fontSize: '1em' }}>{openLearning ? '▾' : '▸'}</span>
           </button>
           {openLearning && (
-            <div className="flex flex-col ml-4">
+            <div className="flex flex-col">
               <Link href="/education" className={`flex items-center gap-3 px-3 py-2 rounded-md text-sm transition-colors no-underline bg-transparent hover:bg-[#202223] ${pathname.startsWith('/education') ? 'font-semibold' : 'font-normal'}`} style={{ color: '#F9F9FB' }}>
                 <GraduationCap size={18} color="#8A8F98" />
                 <span>Education</span>
@@ -104,7 +111,7 @@ export function Sidebar() {
             Contact <span className="ml-0.5 align-middle" style={{ fontSize: '1em' }}>{openContact ? '▾' : '▸'}</span>
           </button>
           {openContact && (
-            <div className="flex flex-col ml-4">
+            <div className="flex flex-col">
               {contactItems.map((item, idx) => {
                 const ItemIcon = item.icon
                 return (
