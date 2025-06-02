@@ -17,9 +17,14 @@ export function Sidebar() {
   const [openLearning, setOpenLearning] = useState(true)
   const [openContact, setOpenContact] = useState(true)
 
+  const obfuscatePhone = (phone: string) => {
+    // Replace middle and last four digits with asterisks if phone is in the format '416 316 6474'
+    return phone.replace(/(\d{3}) \d{3} \d{4}/, '$1 *** ****');
+  };
+
   const contactItems = [
     { icon: Mail, label: "Email", value: contact.email },
-    { icon: Phone, label: "Phone", value: contact.phone },
+    { icon: Phone, label: "Phone", value: obfuscatePhone(contact.phone) },
     { icon: MapPin, label: "Location", value: contact.location },
     { icon: Github, label: "GitHub", value: "NickLaws0n", href: "https://github.com/NickLaws0n" },
     { icon: Linkedin, label: "LinkedIn", value: "nicklawson", href: "https://www.linkedin.com/in/nicklawson/" },

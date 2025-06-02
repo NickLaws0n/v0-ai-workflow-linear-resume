@@ -310,7 +310,7 @@ const resumeData: Omit<ResumeData, "setActiveView"> = {
   ],
   contact: {
     email: "nicklawson85@gmail.com",
-    phone: "416 316 6474",
+    phone: "416 *** ****",
     location: "Toronto, Canada",
     github: "github.com/nicklawson85",
     linkedin: "linkedin.com/in/nicklawson85",
